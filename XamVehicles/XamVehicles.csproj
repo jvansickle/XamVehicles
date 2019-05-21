@@ -13,8 +13,14 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.394984-pre10" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="Service\" />
+    <Folder Include="Service\FuelEconomyGov\" />
+    <Folder Include="Model\" />
+    <Folder Include="Model\CarQueryApi\" />
   </ItemGroup>
 </Project>

@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamVehicles.View.VehicleSelectionPage">
     <ContentPage.Content>
-        <Button Text="Hello"/>
+        
     </ContentPage.Content>
 </ContentPage>
