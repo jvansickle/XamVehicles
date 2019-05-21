@@ -2,7 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        x:Class="XamVehicles.AppShell"
-       xmlns:view="clr-namespace:XamVehicles.View">
+       xmlns:view="clr-namespace:XamVehicles.View"
+       Visual="Material">
     
     <ShellContent Title="Vehicle Selection"
                   ContentTemplate="{DataTemplate view:VehicleSelectionPage}"/>
