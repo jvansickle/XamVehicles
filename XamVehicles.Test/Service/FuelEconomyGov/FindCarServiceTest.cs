@@ -91,5 +91,31 @@ namespace XamVehicles.Test.Service.FuelEconomyGov
                 Assert.NotNull(p.GetValue(model));
             });
         }
+
+        [Fact]
+        public async void GetTrims_NonEmpty_Success()
+        {
+            var result = await findCarService.GetTrims(2019, "subaru", "wrx");
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public async void GetTrims_PropertiesNonNull_Success()
+        {
+            var result = await findCarService.GetTrims(2019, "subaru", "wrx");
+
+            var trim = result.ToList()[0];
+            trim.GetType().GetProperties().ToList().ForEach(p =>
+            {
+                Assert.NotNull(p.GetValue(trim));
+            });
+        }
+
+        [Fact]
+        public async void GetModelDetails_ValidId_NonNullValues()
+        {
+            var result = await findCarService.GetModelDetails(11459);
+            Assert.NotNull(result.ModelId);
+        }
     }
 }
