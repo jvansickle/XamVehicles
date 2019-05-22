@@ -5,7 +5,7 @@
        xmlns:view="clr-namespace:XamVehicles.View"
        Visual="Material">
     
-    <ShellContent Title="Vehicle Selection"
+    <ShellContent Title="Vehicle Lookup"
                   ContentTemplate="{DataTemplate view:VehicleSelectionPage}"/>
     
 </Shell>

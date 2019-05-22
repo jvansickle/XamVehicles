@@ -18,7 +18,7 @@ namespace XamVehicles.Service.FuelEconomyGov
 
         private static string httpRoot = "https://www.carqueryapi.com/api/0.3/";
 
-        public async Task<IEnumerable<string>> GetYears()
+        public async Task<IEnumerable<int>> GetYears()
         {
             var result = await httpClient.GetAsync($"{httpRoot}?cmd=getYears");
 
@@ -29,17 +29,17 @@ namespace XamVehicles.Service.FuelEconomyGov
                 var minYear = yearsDict["Years"]["min_year"];
                 var maxYear = yearsDict["Years"]["max_year"];
 
-                List<string> years = new List<string>(maxYear - minYear);
+                List<int> years = new List<int>(maxYear - minYear);
 
                 for (int i = minYear; i <= maxYear; i++)
                 {
-                    years.Add(i.ToString());
+                    years.Add(i);
                 }
 
-                return years;
+                return years.OrderByDescending(y => y);
             }
 
-            return new List<string>();
+            return new List<int>();
         }
 
         public async Task<IEnumerable<Make>> GetMakes(int year)

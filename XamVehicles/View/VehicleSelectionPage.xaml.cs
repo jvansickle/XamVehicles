@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+using XamVehicles.ViewModel;
 
 namespace XamVehicles.View
 {
@@ -10,6 +8,7 @@ namespace XamVehicles.View
         public VehicleSelectionPage()
         {
             InitializeComponent();
+            BindingContext = DependencyService.Get<VehicleSelectionViewModel>();
         }
     }
 }

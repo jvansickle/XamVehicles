@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamVehicles.View.VehicleSelectionPage">
+             x:Class="XamVehicles.View.VehicleSelectionPage"
+             xmlns:converter="clr-namespace:XamVehicles.Converter"
+             Title="Selection">
     <ContentPage.Content>
         
+        <StackLayout HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Padding="10">
+            
+            <Picker ItemsSource="{Binding Years}"
+                    SelectedItem="{Binding SelectedYear}"/>
+            
+            <Picker ItemsSource="{Binding Makes}"
+                    SelectedItem="{Binding SelectedMake}"
+                    ItemDisplayBinding="{Binding DisplayText}"
+                    IsEnabled="{Binding SelectedYear, Converter={StaticResource PositiveIntegerConverter}}"/>
+            
+            <Picker ItemsSource="{Binding VehicleModels}"
+                    SelectedItem="{Binding SelectedVehicleModel}"
+                    ItemDisplayBinding="{Binding Name}"
+                    IsEnabled="{Binding SelectedMake, Converter={StaticResource NotNullConverter}}"/>
+            
+            <Picker ItemsSource="{Binding Trims}"
+                    SelectedItem="{Binding SelectedTrim}"
+                    ItemDisplayBinding="{Binding TrimName}"
+                    IsEnabled="{Binding SelectedVehicleModel, Converter={StaticResource NotNullConverter}}"/>
+            
+            <Button Text="Check it out"/>
+            
+        </StackLayout>
+        
     </ContentPage.Content>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:NotNullConverter x:Key="NotNullConverter"/>
+            <converter:PositiveIntegerConverter x:Key="PositiveIntegerConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 </ContentPage>

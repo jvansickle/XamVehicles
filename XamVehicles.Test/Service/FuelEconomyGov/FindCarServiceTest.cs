@@ -24,7 +24,7 @@ namespace XamVehicles.Test.Service.FuelEconomyGov
         public async void GetYears_ContainsAYear_Success()
         {
             var result = await findCarService.GetYears();
-            Assert.Contains("2018", result);
+            Assert.Contains(2018, result);
         }
 
         [Fact]

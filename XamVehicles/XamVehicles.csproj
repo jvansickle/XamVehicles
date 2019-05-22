@@ -22,5 +22,6 @@
     <Folder Include="Service\FuelEconomyGov\" />
     <Folder Include="Model\" />
     <Folder Include="Model\CarQueryApi\" />
+    <Folder Include="Converter\" />
   </ItemGroup>
 </Project>
