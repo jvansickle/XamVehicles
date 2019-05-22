@@ -23,14 +23,14 @@ namespace XamVehicles.Service.FuelEconomyGov
 
             if (result.StatusCode == HttpStatusCode.OK)
             {
-                var yearsDict = JsonConvert.DeserializeObject<Dictionary<string,Dictionary<string, int>>>(await result.Content.ReadAsStringAsync());
+                var yearsDict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(await result.Content.ReadAsStringAsync());
 
                 var minYear = yearsDict["Years"]["min_year"];
                 var maxYear = yearsDict["Years"]["max_year"];
 
                 List<string> years = new List<string>(maxYear - minYear);
 
-                for(int i = minYear; i <= maxYear; i++)
+                for (int i = minYear; i <= maxYear; i++)
                 {
                     years.Add(i.ToString());
                 }
@@ -47,14 +47,48 @@ namespace XamVehicles.Service.FuelEconomyGov
 
             if (result.StatusCode == HttpStatusCode.OK)
             {
-                var makesDict = JsonConvert.DeserializeObject<Dictionary<string, List<Make>>>(await result.Content.ReadAsStringAsync());
-
-                var makesList = makesDict["Makes"];
+                var makesList = JsonConvert
+                    .DeserializeObject<Dictionary<string, List<Dictionary<string, string>>>>(await result.Content.ReadAsStringAsync())
+                    ["Makes"]
+                    .Select(make =>
+                    {
+                        return new Make
+                        {
+                            Id = make["make_id"],
+                            DisplayText = make["make_display"],
+                            IsCommon = make["make_is_common"] == "1",
+                            Country = make["make_country"]
+                        };
+                    });
 
                 return makesList;
             }
 
             return new List<Make>();
+        }
+
+        public async Task<IEnumerable<VehicleModel>> GetModels(int year, string makeId)
+        {
+            var result = await httpClient.GetAsync($"{httpRoot}?cmd=getModels&make={makeId}&year={year}");
+
+            if (result.StatusCode == HttpStatusCode.OK)
+            {
+                var modelsList = JsonConvert
+                    .DeserializeObject<Dictionary<string, List<Dictionary<string, string>>>>(await result.Content.ReadAsStringAsync())
+                    ["Models"]
+                    .Select(model =>
+                    {
+                        return new VehicleModel
+                        {
+                            MakeId = model["model_make_id"],
+                            Name = model["model_name"]
+                        };
+                    });
+
+                return modelsList;
+            }
+
+            return new List<VehicleModel>();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-namespace XamVehicles.Model.CarQueryApi
+﻿namespace XamVehicles.Model.CarQueryApi
 {
     public class Make
     {

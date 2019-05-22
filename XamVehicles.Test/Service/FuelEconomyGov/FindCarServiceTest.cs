@@ -47,5 +47,49 @@ namespace XamVehicles.Test.Service.FuelEconomyGov
             var result = await findCarService.GetMakes(2000);
             Assert.NotNull(result.ToList()[0]);
         }
+
+        [Fact]
+        public async void GetMakes_NonNullProperties_Success()
+        {
+            var result = await findCarService.GetMakes(2000);
+            var model = result.ToList()[0];
+            model.GetType().GetProperties().ToList().ForEach(p =>
+            {
+                Assert.NotNull(p.GetValue(model));
+            });
+        }
+
+        [Fact]
+        public async void GetModels_NonEmpty_Success()
+        {
+            var result = await findCarService.GetModels(2000, "ford");
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public async void GetModels_OutOfRange_YieldsEmpty()
+        {
+            var result = await findCarService.GetModels(100, "ford");
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public async void GetModels_NonNull_Success()
+        {
+            var result = await findCarService.GetModels(2000, "ford");
+            Assert.NotNull(result.ToList()[0]);
+        }
+
+        [Fact]
+        public async void GetModels_PropertiesNonNull_Success()
+        {
+            var result = await findCarService.GetModels(2000, "ford");
+            var model = result.ToList()[0];
+
+            model.GetType().GetProperties().ToList().ForEach(p =>
+            {
+                Assert.NotNull(p.GetValue(model));
+            });
+        }
     }
 }
