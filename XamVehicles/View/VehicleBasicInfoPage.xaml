@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamVehicles.View.VehicleBasicInfoPage"
+             Title="Basic Info">
+    <ContentPage.Content>
+
+        <ScrollView>
+            
+            <StackLayout Spacing="20"
+                         BackgroundColor="White">
+            
+                <Frame HorizontalOptions="FillAndExpand"
+                       Margin="0, 0, 0, 10"
+                       CornerRadius="0">
+                    
+                    <Image BackgroundColor="Blue"
+                           Aspect="AspectFill"
+                           Opacity="0.6"
+                           MinimumHeightRequest="60"
+                           HorizontalOptions="CenterAndExpand"/>
+                    
+                </Frame>
+                
+                <Frame HorizontalOptions="FillAndExpand"
+                       Margin="10">
+                    <Grid Margin="0"
+                          Padding="0">
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Text="{Binding Year}"
+                               HorizontalTextAlignment="Center"/>
+                        
+                        <Label Text="{Binding Make}"
+                               HorizontalTextAlignment="Center"
+                               Grid.Column="1"/>
+                        
+                        <Label Text="{Binding Model}"
+                               HorizontalTextAlignment="Center"
+                               Grid.Column="2"/>
+                        
+                        <Label Text="{Binding Trim}"
+                               HorizontalTextAlignment="Center"
+                               Grid.Row="1"
+                               Grid.ColumnSpan="3"/>
+                        
+                    </Grid>
+                </Frame>
+                
+            </StackLayout>
+
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

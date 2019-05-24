@@ -28,7 +28,9 @@
                     ItemDisplayBinding="{Binding TrimName}"
                     IsEnabled="{Binding SelectedVehicleModel, Converter={StaticResource NotNullConverter}}"/>
             
-            <Button Text="Check it out"/>
+            <Button Text="Confirm"
+                    IsEnabled="{Binding SelectedTrim, Converter={StaticResource NotNullConverter}}"
+                    Clicked="HandleConfirmClicked"/>
             
         </StackLayout>
         

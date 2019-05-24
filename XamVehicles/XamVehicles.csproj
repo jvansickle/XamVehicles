@@ -24,4 +24,9 @@
     <Folder Include="Model\CarQueryApi\" />
     <Folder Include="Converter\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="View\VehicleDetailCarouselPage.xaml.cs">
+      <DependentUpon>VehicleDetailCarouselPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
